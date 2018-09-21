@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.arkadiusz.juraszamap.Model.Miejsca;
 import com.example.arkadiusz.juraszamap.R;
@@ -55,8 +54,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "You", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, myChoice.class);
+                intent.putExtra("budynek", miejsca.get(position).getBudynek());
+                intent.putExtra("pietro", String.valueOf(miejsca.get(position).getPietro()));
                 intent.putExtra("opis", miejsca.get(position).getOpis());
                 intent.putExtra("uwagi", miejsca.get(position).getUwagi());
                 context.startActivity(intent);

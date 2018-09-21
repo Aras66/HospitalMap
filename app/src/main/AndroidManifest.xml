@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".myChoice" />
+        <activity
+            android:name=".myChoice"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
