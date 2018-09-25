@@ -4,13 +4,10 @@ package com.example.arkadiusz.juraszamap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class myChoice extends AppCompatActivity {
-
-    private static final String TAG = "Aktywność";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,7 +17,7 @@ public class myChoice extends AppCompatActivity {
 
         getIncomingIntent();
 
-        //bez tego sypie się ActionBar nullpointer ex | nie wyświetla action bar
+        //bez tego ActionBar = nullpointer ex | nie wyświetla action bar
 
         assert getSupportActionBar() != null;
 
@@ -31,10 +28,8 @@ public class myChoice extends AppCompatActivity {
     }
 
     private void getIncomingIntent() {
-        Log.d(TAG, "czy jest intent");
 
         if (getIntent().hasExtra("opis") && getIntent().hasExtra("uwagi") && getIntent().hasExtra("budynek") && getIntent().hasExtra("pietro")) {
-            Log.d(TAG, "są intenty :)");
 
             String budynek = getIntent().getStringExtra("budynek");
             String pietro = getIntent().getStringExtra("pietro");
@@ -45,11 +40,12 @@ public class myChoice extends AppCompatActivity {
         }
     }
 
+
     private void setMyChoice(String budynek, String pietro, String opis, String uwagi) {
 
+        LinearLayout linearLayout = findViewById(R.id.myChoice);
+        linearLayout.setBackgroundResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
 
-        ImageView mapka = findViewById(R.id.imageMap);
-        mapka.setImageResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
 
         TextView budynek2 = findViewById(R.id.myBudynek);
         budynek2.setText(budynek);
@@ -59,6 +55,8 @@ public class myChoice extends AppCompatActivity {
         opis2.setText(opis);
         TextView uwagi2 = findViewById(R.id.myUwagi);
         uwagi2.setText(uwagi);
+        //  TextView opisBudy = findViewById(R.id.opisBud);
+        //  opisBudy.setText(opisBud);
 
 
     }
