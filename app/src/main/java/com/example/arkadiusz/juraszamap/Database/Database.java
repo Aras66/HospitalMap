@@ -64,15 +64,20 @@ public class Database extends SQLiteAssetHelper {
     }
 
     public List<Miejsca> getMiejscePoOpis(String opis) {
+
+        String zmienna;
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qd = new SQLiteQueryBuilder();
+        SQLiteQueryBuilder qd2 = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"ID", "Budynek", "Pietro", "Opis", "Uwagi"};
+        String[] sqlSelect = {"ID", "Budynek", "Pietro", "Opis", "Uwagi","OpisBudynku"};
         String tableName = "Jurasza";
-
+        String tableName2 = "opisybud";
         qd.setTables(tableName);
+        qd2.setTables(tableName2);
 
         Cursor cursor = qd.query(db, sqlSelect, "Opis LIKE ?", new String[]{"%" + opis + "%"}, null, null, null);
+        //Cursor cursor2 = qd2.query(db, sqlSelect, "nazwa = ?", new String[]{"%" + zmienna + "%"}, null, null, null);
         List<Miejsca> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
@@ -82,16 +87,14 @@ public class Database extends SQLiteAssetHelper {
                 miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
                 miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
                 miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
-
+               // miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("OpisBudynku")));
                 result.add(miejsca);
             } while (cursor.moveToNext());
         }
         return result;
     }
-    /*    public getOpisBud(String budynek) {
-            String opisBud
-
-        ;
+      /* public String getOpisBud(String budynek) {
+            String opisBud;
             SQLiteDatabase db = getReadableDatabase();
             SQLiteQueryBuilder qd = new SQLiteQueryBuilder();
 
@@ -116,4 +119,55 @@ public class Database extends SQLiteAssetHelper {
             }
             return result;
         }*/
+
+    public List<String> getAllNamesBuilding(){
+        String[] sqlSelect = {"Budynek"};
+        String tableName = "Jurasza";
+        List<String> labels = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + tableName+ "";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        db.close();
+
+        // returning lables
+        return labels;
+    }
+    public List<String> getAllLevelBuilding(){
+        String[] sqlSelect = {"Pietro"};
+        String tableName = "Jurasza";
+        List<String> labels = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + tableName+ "";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        db.close();
+
+        // returning lables
+        return labels;
+    }
 }

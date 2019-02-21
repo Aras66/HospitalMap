@@ -19,6 +19,9 @@
         <activity
             android:name=".myChoice"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".searchOnBuild"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

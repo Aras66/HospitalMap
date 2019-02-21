@@ -1,11 +1,14 @@
 package com.example.arkadiusz.juraszamap;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
@@ -85,6 +88,29 @@ public class MainActivity extends AppCompatActivity {
 
       adapter = new SearchAdapter(this,database.getMiejsca());
       recyclerView.setAdapter(adapter);
+
+      Button btn1 = findViewById(R.id.other_search_button);
+        btn1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(v.getContext(), searchOnBuild.class);
+                startActivity(intent);
+                finish();
+                }
+        });
+
+        Button btn2 = findViewById(R.id.end_button);
+        btn2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                finish();
+                System.exit(0);
+            }
+        });
     }
 
     private void startSearch(String s) {
@@ -96,5 +122,8 @@ public class MainActivity extends AppCompatActivity {
         suggestList = database.getOpisy();
         materialSearchBar.setLastSuggestions(suggestList);
     }
+
+
+
 
 }

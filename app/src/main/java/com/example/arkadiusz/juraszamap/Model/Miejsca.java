@@ -3,7 +3,7 @@ package com.example.arkadiusz.juraszamap.Model;
 public class Miejsca {
 
     public int id, pietro;
-    public String budynek, opis, uwagi ;
+    public String budynek, opis, uwagi, opisBudynku ;
 public Miejsca(){}
 
 public int getId() {return id;}
@@ -44,11 +44,20 @@ public int getId() {return id;}
         this.uwagi = uwagi;
     }
 
+    public String getOpisBudynku() {
+        return opisBudynku;
+    }
+
+    public void setOpisBudynku(String uwagi) {
+        this.opisBudynku = uwagi;
+    }
+
     public Miejsca(int id, int pietro, String budynek, String opis, String uwagi) {
         this.id = id;
         this.pietro = pietro;
         this.budynek = budynek;
         this.opis = opis;
         this.uwagi = uwagi;
+        this.opisBudynku = opisBudynku;
     }
 }
