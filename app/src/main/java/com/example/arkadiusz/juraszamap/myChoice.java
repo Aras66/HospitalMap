@@ -6,8 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.arkadiusz.juraszamap.Database.Database;
 
 public class myChoice extends AppCompatActivity {
+
+    Database database;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,34 +24,32 @@ public class myChoice extends AppCompatActivity {
 
         //bez tego ActionBar = nullpointer ex | nie wyświetla action bar
 
-      /*  assert getSupportActionBar() != null;
+        assert getSupportActionBar() != null;
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("opis");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }*/
+        }
     }
 
     private void getIncomingIntent() {
 
-        if (getIntent().hasExtra("opis") && getIntent().hasExtra("uwagi") && getIntent().hasExtra("budynek") && getIntent().hasExtra("pietro") && getIntent().hasExtra("opisBud")) {
+        if (getIntent().hasExtra("opis") && getIntent().hasExtra("uwagi") && getIntent().hasExtra("budynek") && getIntent().hasExtra("pietro")) {
 
             String budynek = getIntent().getStringExtra("budynek");
             String pietro = getIntent().getStringExtra("pietro");
             String opis = getIntent().getStringExtra("opis");
             String uwagi = getIntent().getStringExtra("uwagi");
-            String opisBud = getIntent().getStringExtra("opisBud");
-            setMyChoice(budynek, pietro, opis, uwagi, opisBud);
+
+
+            setMyChoice(budynek, pietro, opis, uwagi);
+
         }
     }
 
-
-    private void setMyChoice(String budynek, String pietro, String opis, String uwagi, String opisBud) {
-
+    private void setMyChoice(String budynek, String pietro, String opis, String uwagi) {
         LinearLayout linearLayout = findViewById(R.id.myChoice);
         linearLayout.setBackgroundResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
-
-
         TextView budynek2 = findViewById(R.id.myBudynek);
         budynek2.setText(budynek);
         TextView pietro2 = findViewById(R.id.myPietro);
@@ -56,8 +59,14 @@ public class myChoice extends AppCompatActivity {
         TextView uwagi2 = findViewById(R.id.myUwagi);
         uwagi2.setText(uwagi);
         TextView opisBudy = findViewById(R.id.opisBud);
-        opisBudy.setText(opisBud);
-
+        opisBudy.setText((CharSequence) database.getBudynekOpis(budynek));
+        try {
+            opisBudy.setText((CharSequence) database.getBudynekOpis(budynek));
+        }
+        catch (Exception e) {
+            Toast toast = Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
+            toast.show();
+        }
 
     }
 }
