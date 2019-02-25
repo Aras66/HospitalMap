@@ -77,7 +77,6 @@ public class Database extends SQLiteAssetHelper {
         qd2.setTables(tableName2);
 
         Cursor cursor = qd.query(db, sqlSelect, "Opis LIKE ?", new String[]{"%" + opis + "%"}, null, null, null);
-        //Cursor cursor2 = qd2.query(db, sqlSelect, "nazwa = ?", new String[]{"%" + zmienna + "%"}, null, null, null);
         List<Miejsca> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
@@ -93,40 +92,14 @@ public class Database extends SQLiteAssetHelper {
         }
         return result;
     }
-      /* public String getOpisBud(String budynek) {
-            String opisBud;
-            SQLiteDatabase db = getReadableDatabase();
-            SQLiteQueryBuilder qd = new SQLiteQueryBuilder();
-
-            String[] sqlSelect = {"opisBudynku"};
-            String tableName = "opisybud";
-
-            qd.setTables(tableName);
-
-            Cursor cursor = qd.query(db, sqlSelect, "nazwa = ?", new String[]{"%" + budynek + "%"}, null, null, null);
-             result = new ArrayList<>();
-            if (cursor.moveToFirst()) {
-                do {
-                    Miejsca miejsca = new Miejsca();
-                    miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
-                    miejsca.setBudynek(cursor.getString(cursor.getColumnIndex("Budynek")));
-                    miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
-                    miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
-                    miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
-
-                    result.add(miejsca);
-                } while (cursor.moveToNext());
-            }
-            return result;
-        }*/
 
     public List<String> getAllNamesBuilding(){
-        String[] sqlSelect = {"Budynek"};
+        String sqlSelect = "Budynek";
         String tableName = "Jurasza";
         List<String> labels = new ArrayList<String>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + tableName+ "";
+        String selectQuery = "SELECT  " +sqlSelect+ " FROM " +tableName+ " GROUP BY " +sqlSelect+ " ORDER BY " +sqlSelect+ "";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -134,7 +107,7 @@ public class Database extends SQLiteAssetHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                labels.add(cursor.getString(1));
+                labels.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
 
@@ -146,12 +119,12 @@ public class Database extends SQLiteAssetHelper {
         return labels;
     }
     public List<String> getAllLevelBuilding(){
-        String[] sqlSelect = {"Pietro"};
+        String sqlSelect = "Pietro";
         String tableName = "Jurasza";
         List<String> labels = new ArrayList<String>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + tableName+ "";
+        String selectQuery = "SELECT " +sqlSelect+ " FROM " + tableName+ " GROUP BY " +sqlSelect+ " ORDER BY " +sqlSelect+ "";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -159,7 +132,7 @@ public class Database extends SQLiteAssetHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                labels.add(cursor.getString(1));
+                labels.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
 
@@ -169,5 +142,31 @@ public class Database extends SQLiteAssetHelper {
 
         // returning lables
         return labels;
+    }
+    public  List<Miejsca> getOpisPoBudynku(String budynek, String pietro) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] sqlSelect = {"ID", "Budynek", "Pietro", "Opis", "Uwagi"};
+        String sqlSelect2 = "Budynek";
+        String sqlSelect3 = "Pietro";
+        String tableName = "Jurasza";
+        String budynek2 = "A";
+        String pietro2 = "0";
+
+        String selectQuery = String.format("select * from %s where %s = %s and %s = %s ", tableName, sqlSelect2, budynek2, sqlSelect3, pietro2);
+        Cursor cursor = db.rawQuery(selectQuery, sqlSelect);
+        List<Miejsca> result = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Miejsca miejsca = new Miejsca();
+                miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+                miejsca.setBudynek(cursor.getString(cursor.getColumnIndex("Budynek")));
+                miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
+                miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
+                miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
+                // miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("OpisBudynku")));
+                result.add(miejsca);
+            } while (cursor.moveToNext());
+        }
+        return result;
     }
 }
