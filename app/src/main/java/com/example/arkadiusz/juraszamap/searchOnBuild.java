@@ -47,7 +47,6 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         recyclerView.setAdapter(adapter);
 
 
-
         Button btn1 = findViewById(R.id.back_button);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,17 +58,16 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
-
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> av, View v,
                                        int pos, long id) {
                 pietro = av.getItemAtPosition(pos).toString();
-             //   if(budynek!= null) {
-             //       Database db = new Database(getApplicationContext());
-             //       db.getOpisPoBudynku(budynek, pietro);
-
-             //   }
+                if(budynek!= null) {
+                    Database db = new Database(getApplicationContext());
+                    db.getOpisPoBudynku(budynek, pietro);
+                    infoSet();
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {}
@@ -79,12 +77,6 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
             public void onItemSelected(AdapterView<?> av, View v,
                                        int pos, long id) {
                  budynek = av.getItemAtPosition(pos).toString();
-
-             /*   if(pietro!= null) {
-                    Database db = new Database(getApplicationContext());
-                    db.getOpisPoBudynku(budynek, pietro);
-                }*/
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {}

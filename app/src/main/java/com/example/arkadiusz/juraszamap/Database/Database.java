@@ -9,6 +9,7 @@ import com.example.arkadiusz.juraszamap.Model.Miejsca;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Database extends SQLiteAssetHelper {
@@ -145,15 +146,14 @@ public class Database extends SQLiteAssetHelper {
     }
     public  List<Miejsca> getOpisPoBudynku(String budynek, String pietro) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] sqlSelect = {"ID", "Budynek", "Pietro", "Opis", "Uwagi"};
+       // String[] sqlSelect = {"ID", "Budynek", "Pietro", "Opis", "Uwagi"};
         String sqlSelect2 = "Budynek";
         String sqlSelect3 = "Pietro";
         String tableName = "Jurasza";
-        String budynek2 = "A";
-        String pietro2 = "0";
 
-        String selectQuery = String.format("select * from %s where %s = %s and %s = %s ", tableName, sqlSelect2, budynek2, sqlSelect3, pietro2);
-        Cursor cursor = db.rawQuery(selectQuery, sqlSelect);
+
+        String selectQuery = String.format("select * from %s where %s = '%s' and %s = %s ", tableName, sqlSelect2, budynek, sqlSelect3, pietro);
+        Cursor cursor = db.rawQuery(selectQuery, null);
         List<Miejsca> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
