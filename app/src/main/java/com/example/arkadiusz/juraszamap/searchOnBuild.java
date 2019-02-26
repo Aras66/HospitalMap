@@ -59,32 +59,30 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
-
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> av, View v,
-                                       int pos, long id) {
-                pietro = av.getItemAtPosition(pos).toString();
-             //   if(budynek!= null) {
-             //       Database db = new Database(getApplicationContext());
-             //       db.getOpisPoBudynku(budynek, pietro);
-
-             //   }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {}
-        });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> av, View v,
                                        int pos, long id) {
-                 budynek = av.getItemAtPosition(pos).toString();
+                budynek = av.getItemAtPosition(pos).toString();
 
              /*   if(pietro!= null) {
                     Database db = new Database(getApplicationContext());
                     db.getOpisPoBudynku(budynek, pietro);
                 }*/
-
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {}
+        });
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> av, View v,
+                                       int pos, long id) {
+                pietro = av.getItemAtPosition(pos).toString();
+                if(budynek!= null) {
+                    Database db = new Database(getApplicationContext());
+                    db.getOpisPoBudynku(budynek, pietro);
+                    infoSet();
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {}
@@ -125,8 +123,15 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
 
     public void infoSet(){
-        Toast.makeText(this, "You selected: " + pietro + budynek,
+        Toast.makeText(this, "You selected: " + budynek + " " + pietro ,
                 Toast.LENGTH_LONG).show();
+
+
+     //   database.getOpisPoBudynku(budynek, pietro);
+
+        adapter = new SearchAdapter(this,database.getOpisPoBudynku(budynek, pietro));
+        recyclerView.setAdapter(adapter);
+
     }
 
     @Override

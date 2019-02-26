@@ -59,9 +59,9 @@ public class myChoice extends AppCompatActivity {
         TextView uwagi2 = findViewById(R.id.myUwagi);
         uwagi2.setText(uwagi);
         TextView opisBudy = findViewById(R.id.opisBud);
-        opisBudy.setText((CharSequence) database.getBudynekOpis(budynek));
+       // opisBudy.setText((CharSequence) database.getBudynekOpis(budynek));
         try {
-            opisBudy.setText((CharSequence) database.getBudynekOpis(budynek));
+          //  opisBudy.setText((CharSequence) database.getBudynekOpis(budynek));
         }
         catch (Exception e) {
             Toast toast = Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
