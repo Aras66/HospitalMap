@@ -9,7 +9,6 @@ import com.example.arkadiusz.juraszamap.Model.Miejsca;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Database extends SQLiteAssetHelper {
@@ -146,15 +145,39 @@ public class Database extends SQLiteAssetHelper {
     }
     public  List<Miejsca> getOpisPoBudynku(String budynek, String pietro) {
         SQLiteDatabase db = this.getReadableDatabase();
-       // String[] sqlSelect = {"ID", "Budynek", "Pietro", "Opis", "Uwagi"};
-        String sqlSelect2 = "Budynek";
-        String sqlSelect3 = "Pietro";
+        String building = "Budynek";
+        String level = "Pietro";
         String tableName = "Jurasza";
 
-
-        String selectQuery = String.format("select * from %s where %s = '%s' and %s = %s ", tableName, sqlSelect2, budynek, sqlSelect3, pietro);
+        String selectQuery = String.format("select * from %s where %s = '%s' and %s = %s ", tableName, building, budynek, level, pietro);
         Cursor cursor = db.rawQuery(selectQuery, null);
         List<Miejsca> result = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                Miejsca miejsca = new Miejsca();
+                miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+                miejsca.setBudynek(cursor.getString(cursor.getColumnIndex("Budynek")));
+                miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
+                miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
+                miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
+                // miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("OpisBudynku")));
+                result.add(miejsca);
+            } while (cursor.moveToNext());
+        }
+        return result;
+    }
+
+    public  List<Miejsca> getOpisBudynku(String budynek) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String building = "Budynek";
+        String level = "Pietro";
+        String tableName = "Jurasza";
+
+        String selectQuery = String.format("select * from %s where %s = '%s' and %s = %s ", tableName, building, budynek, level);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        List<Miejsca> result = new ArrayList<>();
+
         if (cursor.moveToFirst()) {
             do {
                 Miejsca miejsca = new Miejsca();
