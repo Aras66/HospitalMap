@@ -23,6 +23,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
     RecyclerView.LayoutManager layoutManager;
     SearchAdapter adapter;
     Database database;
+    String budynek, pietro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,38 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
                 finish();
             }
         });
+
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> av, View v,
+                                       int pos, long id) {
+                pietro = av.getItemAtPosition(pos).toString();
+             //   if(budynek!= null) {
+             //       Database db = new Database(getApplicationContext());
+             //       db.getOpisPoBudynku(budynek, pietro);
+
+             //   }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {}
+        });
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> av, View v,
+                                       int pos, long id) {
+                 budynek = av.getItemAtPosition(pos).toString();
+
+             /*   if(pietro!= null) {
+                    Database db = new Database(getApplicationContext());
+                    db.getOpisPoBudynku(budynek, pietro);
+                }*/
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {}
+        });
+
     }
 
     private void loadSpinnerData() {
@@ -90,15 +123,14 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         spinner2.setAdapter(dataAdapter2);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position,
-                               long id) {
-        // On selecting a spinner item
-        String label = parent.getItemAtPosition(position).toString();
 
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "You selected: " + label,
+    public void infoSet(){
+        Toast.makeText(this, "You selected: " + pietro + budynek,
                 Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
 
