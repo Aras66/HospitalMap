@@ -48,11 +48,11 @@ public int getId() {return id;}
         return opisBudynku;
     }
 
-    public void setOpisBudynku(String uwagi) {
-        this.opisBudynku = uwagi;
+    public void setOpisBudynku(String opisBudynku) {
+        this.opisBudynku = opisBudynku;
     }
 
-    public Miejsca(int id, int pietro, String budynek, String opis, String uwagi) {
+    public Miejsca(int id, int pietro, String budynek, String opis, String uwagi, String opisBudynku) {
         this.id = id;
         this.pietro = pietro;
         this.budynek = budynek;
@@ -60,4 +60,6 @@ public int getId() {return id;}
         this.uwagi = uwagi;
         this.opisBudynku = opisBudynku;
     }
+
+
 }

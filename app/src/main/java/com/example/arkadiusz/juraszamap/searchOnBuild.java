@@ -46,7 +46,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         adapter = new SearchAdapter(this,database.getMiejsca());
         recyclerView.setAdapter(adapter);
 
-
+        infoSet();
 
         Button btn1 = findViewById(R.id.back_button);
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
             public void onItemSelected(AdapterView<?> av, View v,
                                        int pos, long id) {
                 budynek = av.getItemAtPosition(pos).toString();
-
+                loadSpinnerData2();
              /*   if(pietro!= null) {
                     Database db = new Database(getApplicationContext());
                     db.getOpisPoBudynku(budynek, pietro);
@@ -96,7 +96,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
         // Spinner Drop down elements
         List<String> lables = db.getAllNamesBuilding();
-        List<String> lables2 = db.getAllLevelBuilding();
+        List<String> lables2 = db.getAllLevelBuilding(budynek);
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -108,6 +108,24 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, lables2);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter2
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner2.setAdapter(dataAdapter2);
+    }
+    private void loadSpinnerData2() {
+        // database handler
+        Database db = new Database(getApplicationContext());
+
+        // Spinner Drop down elements
+        List<String> lables2 = db.getAllLevelBuilding(budynek);
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,

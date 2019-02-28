@@ -17,7 +17,7 @@ import java.util.List;
 
 class SearchViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView budynek, opis, uwagi, pietro;
+    public TextView budynek, opis, uwagi, pietro, opisBud;
 
     public SearchViewHolder(View itemView) {
         super(itemView);
@@ -25,6 +25,7 @@ class SearchViewHolder extends RecyclerView.ViewHolder {
         pietro = itemView.findViewById(R.id.pietro);
         opis = itemView.findViewById(R.id.opis);
         uwagi = itemView.findViewById(R.id.uwagi);
+        opisBud = itemView.findViewById(R.id.opisBud);
     }
 }
 
@@ -51,6 +52,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
         holder.pietro.setText(String.valueOf(miejsca.get(position).getPietro()));
         holder.opis.setText(miejsca.get(position).getOpis());
         holder.uwagi.setText(miejsca.get(position).getUwagi());
+        holder.opisBud.setText(miejsca.get(position).getOpisBudynku());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +62,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
                 intent.putExtra("pietro", String.valueOf(miejsca.get(position).getPietro()));
                 intent.putExtra("opis", miejsca.get(position).getOpis());
                 intent.putExtra("uwagi", miejsca.get(position).getUwagi());
+                intent.putExtra("opisBud", miejsca.get(position).getOpisBudynku());
                 context.startActivity(intent);
 
             }

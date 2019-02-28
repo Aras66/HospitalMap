@@ -12,7 +12,6 @@ import com.example.arkadiusz.juraszamap.Database.Database;
 
 public class myChoice extends AppCompatActivity {
 
-    Database database;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,8 +20,6 @@ public class myChoice extends AppCompatActivity {
         setContentView(R.layout.my_choice);
 
         getIncomingIntent();
-
-        //bez tego ActionBar = nullpointer ex | nie wyświetla action bar
 
         assert getSupportActionBar() != null;
 
@@ -40,14 +37,14 @@ public class myChoice extends AppCompatActivity {
             String pietro = getIntent().getStringExtra("pietro");
             String opis = getIntent().getStringExtra("opis");
             String uwagi = getIntent().getStringExtra("uwagi");
+            String opisBudynku = getIntent().getStringExtra("opisBudynku");
 
-
-            setMyChoice(budynek, pietro, opis, uwagi);
+            setMyChoice(budynek, pietro, opis, uwagi, opisBudynku);
 
         }
     }
 
-    private void setMyChoice(String budynek, String pietro, String opis, String uwagi) {
+    private void setMyChoice(String budynek, String pietro, String opis, String uwagi, String opisBudynku) {
         LinearLayout linearLayout = findViewById(R.id.myChoice);
         linearLayout.setBackgroundResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
         TextView budynek2 = findViewById(R.id.myBudynek);
@@ -59,14 +56,7 @@ public class myChoice extends AppCompatActivity {
         TextView uwagi2 = findViewById(R.id.myUwagi);
         uwagi2.setText(uwagi);
         TextView opisBudy = findViewById(R.id.opisBud);
-       // opisBudy.setText((CharSequence) database.getBudynekOpis(budynek));
-        try {
-          //  opisBudy.setText((CharSequence) database.getBudynekOpis(budynek));
-        }
-        catch (Exception e) {
-            Toast toast = Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
-            toast.show();
-        }
+       opisBudy.setText(opisBudynku);
 
     }
 }

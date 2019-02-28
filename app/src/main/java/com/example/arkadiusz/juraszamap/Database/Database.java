@@ -21,14 +21,11 @@ public class Database extends SQLiteAssetHelper {
     }
 
     public List<Miejsca> getMiejsca() {
-        SQLiteDatabase db = getReadableDatabase();
-        SQLiteQueryBuilder qd = new SQLiteQueryBuilder();
+        SQLiteDatabase db = this.getReadableDatabase();
+        //SQLiteQueryBuilder qd = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"ID", "Budynek", "Pietro", "Opis", "Uwagi"};
-        String tablename = "Jurasza";
-
-        qd.setTables(tablename);
-        Cursor cursor = qd.query(db, sqlSelect, null, null, null, null, null);
+        String selectQuery = "SELECT ID,Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek";
+        Cursor cursor = db.rawQuery(selectQuery, null);
         List<Miejsca> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
@@ -38,6 +35,7 @@ public class Database extends SQLiteAssetHelper {
                 miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
                 miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
                 miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
+                miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("Opisbud")));
 
                 result.add(miejsca);
             } while (cursor.moveToNext());
@@ -65,18 +63,10 @@ public class Database extends SQLiteAssetHelper {
 
     public List<Miejsca> getMiejscePoOpis(String opis) {
 
-        String zmienna;
         SQLiteDatabase db = getReadableDatabase();
-        SQLiteQueryBuilder qd = new SQLiteQueryBuilder();
-        SQLiteQueryBuilder qd2 = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"ID", "Budynek", "Pietro", "Opis", "Uwagi","OpisBudynku"};
-        String tableName = "Jurasza";
-        String tableName2 = "opisybud";
-        qd.setTables(tableName);
-        qd2.setTables(tableName2);
-
-        Cursor cursor = qd.query(db, sqlSelect, "Opis LIKE ?", new String[]{"%" + opis + "%"}, null, null, null);
+        String selectQuery = "SELECT ID,Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek and Opis like '"+opis+"'";
+        Cursor cursor = db.rawQuery(selectQuery, null);
         List<Miejsca> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
@@ -86,7 +76,7 @@ public class Database extends SQLiteAssetHelper {
                 miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
                 miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
                 miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
-               // miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("OpisBudynku")));
+                miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("Opisbud")));
                 result.add(miejsca);
             } while (cursor.moveToNext());
         }
@@ -118,13 +108,12 @@ public class Database extends SQLiteAssetHelper {
         // returning lables
         return labels;
     }
-    public List<String> getAllLevelBuilding(){
-        String sqlSelect = "Pietro";
-        String tableName = "Jurasza";
+    public List<String> getAllLevelBuilding(String budynek){
+
         List<String> labels = new ArrayList<String>();
 
         // Select All Query
-        String selectQuery = "SELECT " +sqlSelect+ " FROM " + tableName+ " GROUP BY " +sqlSelect+ " ORDER BY " +sqlSelect+ "";
+        String selectQuery = "SELECT Pietro FROM Jurasza WHERE Budynek = '"+budynek+"' GROUP BY Pietro ORDER BY Pietro";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -145,11 +134,8 @@ public class Database extends SQLiteAssetHelper {
     }
     public  List<Miejsca> getOpisPoBudynku(String budynek, String pietro) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String building = "Budynek";
-        String level = "Pietro";
-        String tableName = "Jurasza";
 
-        String selectQuery = String.format("select * from %s where %s = '%s' and %s = %s ", tableName, building, budynek, level, pietro);
+        String selectQuery = "SELECT ID,Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek where Jurasza.Budynek = '"+budynek+"' and Pietro = "+pietro+"";
         Cursor cursor = db.rawQuery(selectQuery, null);
         List<Miejsca> result = new ArrayList<>();
 
@@ -161,32 +147,7 @@ public class Database extends SQLiteAssetHelper {
                 miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
                 miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
                 miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
-                // miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("OpisBudynku")));
-                result.add(miejsca);
-            } while (cursor.moveToNext());
-        }
-        return result;
-    }
-
-    public  List<Miejsca> getOpisBudynku(String budynek) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String building = "Budynek";
-        String level = "Pietro";
-        String tableName = "Jurasza";
-
-        String selectQuery = String.format("select * from %s where %s = '%s' and %s = %s ", tableName, building, budynek, level);
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        List<Miejsca> result = new ArrayList<>();
-
-        if (cursor.moveToFirst()) {
-            do {
-                Miejsca miejsca = new Miejsca();
-                miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
-                miejsca.setBudynek(cursor.getString(cursor.getColumnIndex("Budynek")));
-                miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
-                miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
-                miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
-                // miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("OpisBudynku")));
+                miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("Opisbud")));
                 result.add(miejsca);
             } while (cursor.moveToNext());
         }
