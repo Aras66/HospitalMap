@@ -17,6 +17,8 @@ import com.example.arkadiusz.juraszamap.Database.Database;
 
 import java.util.List;
 
+import static android.support.v4.view.ViewCompat.setNestedScrollingEnabled;
+
 public class searchOnBuild extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinner, spinner2 ;
     RecyclerView recyclerView;
@@ -35,7 +37,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         recyclerView=findViewById(R.id.recycler_search);
         layoutManager= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
 
         spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
@@ -45,6 +47,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
         adapter = new SearchAdapter(this,database.getMiejsca());
         recyclerView.setAdapter(adapter);
+
 
         infoSet();
 
