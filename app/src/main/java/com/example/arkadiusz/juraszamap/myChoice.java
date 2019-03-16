@@ -6,9 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.arkadiusz.juraszamap.Database.Database;
 
 public class myChoice extends AppCompatActivity {
 

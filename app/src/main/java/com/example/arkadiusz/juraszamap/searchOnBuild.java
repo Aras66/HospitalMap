@@ -10,14 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
-
 import java.util.List;
-
-import static android.support.v4.view.ViewCompat.setNestedScrollingEnabled;
 
 public class searchOnBuild extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinner, spinner2 ;
@@ -48,7 +43,6 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         adapter = new SearchAdapter(this,database.getMiejsca());
         recyclerView.setAdapter(adapter);
 
-
         infoSet();
 
         Button btn1 = findViewById(R.id.back_button);
@@ -68,10 +62,10 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
                                        int pos, long id) {
                 budynek = av.getItemAtPosition(pos).toString();
                 loadSpinnerData2();
-             /*   if(pietro!= null) {
+                if(pietro!= null) {
                     Database db = new Database(getApplicationContext());
                     db.getOpisPoBudynku(budynek, pietro);
-                }*/
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {}
@@ -102,7 +96,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         List<String> lables2 = db.getAllLevelBuilding(budynek);
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, lables);
 
         // Drop down layout style - list view with radio button
@@ -113,7 +107,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         spinner.setAdapter(dataAdapter);
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, lables2);
 
         // Drop down layout style - list view with radio button
@@ -131,7 +125,7 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         List<String> lables2 = db.getAllLevelBuilding(budynek);
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, lables2);
 
         // Drop down layout style - list view with radio button
@@ -144,11 +138,8 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
 
     public void infoSet(){
-        Toast.makeText(this, "You selected: " + budynek + " " + pietro ,
-                Toast.LENGTH_LONG).show();
-
-
-     //   database.getOpisPoBudynku(budynek, pietro);
+      /*  Toast.makeText(this, "You selected: " + budynek + " " + pietro ,
+                Toast.LENGTH_LONG).show();  */
 
         adapter = new SearchAdapter(this,database.getOpisPoBudynku(budynek, pietro));
         recyclerView.setAdapter(adapter);

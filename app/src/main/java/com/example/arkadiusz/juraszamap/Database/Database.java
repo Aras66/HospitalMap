@@ -24,13 +24,14 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         //SQLiteQueryBuilder qd = new SQLiteQueryBuilder();
 
-        String selectQuery = "SELECT ID,Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek";
+        String selectQuery = "SELECT Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek";
         Cursor cursor = db.rawQuery(selectQuery, null);
+
         List<Miejsca> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
                 Miejsca miejsca = new Miejsca();
-                miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+               // miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 miejsca.setBudynek(cursor.getString(cursor.getColumnIndex("Budynek")));
                 miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
                 miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
@@ -40,6 +41,8 @@ public class Database extends SQLiteAssetHelper {
                 result.add(miejsca);
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return result;
     }
 
@@ -65,13 +68,14 @@ public class Database extends SQLiteAssetHelper {
 
         SQLiteDatabase db = getReadableDatabase();
 
-        String selectQuery = "SELECT ID,Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek and Opis like '"+opis+"'";
+        String selectQuery = "SELECT Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek and Opis like '"+opis+"'";
         Cursor cursor = db.rawQuery(selectQuery, null);
+
         List<Miejsca> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
                 Miejsca miejsca = new Miejsca();
-                miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+                //miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 miejsca.setBudynek(cursor.getString(cursor.getColumnIndex("Budynek")));
                 miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
                 miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
@@ -80,13 +84,15 @@ public class Database extends SQLiteAssetHelper {
                 result.add(miejsca);
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return result;
     }
 
     public List<String> getAllNamesBuilding(){
         String sqlSelect = "Budynek";
         String tableName = "Jurasza";
-        List<String> labels = new ArrayList<String>();
+        List<String> labels = new ArrayList<>();
 
         // Select All Query
         String selectQuery = "SELECT  " +sqlSelect+ " FROM " +tableName+ " GROUP BY " +sqlSelect+ " ORDER BY " +sqlSelect+ "";
@@ -110,7 +116,7 @@ public class Database extends SQLiteAssetHelper {
     }
     public List<String> getAllLevelBuilding(String budynek){
 
-        List<String> labels = new ArrayList<String>();
+        List<String> labels = new ArrayList<>();
 
         // Select All Query
         String selectQuery = "SELECT Pietro FROM Jurasza WHERE Budynek = '"+budynek+"' GROUP BY Pietro ORDER BY Pietro";
@@ -135,14 +141,15 @@ public class Database extends SQLiteAssetHelper {
     public  List<Miejsca> getOpisPoBudynku(String budynek, String pietro) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selectQuery = "SELECT ID,Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek where Jurasza.Budynek = '"+budynek+"' and Pietro = "+pietro+"";
+        String selectQuery = "SELECT Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek where Jurasza.Budynek = '"+budynek+"' and Pietro = "+pietro+"";
         Cursor cursor = db.rawQuery(selectQuery, null);
+
         List<Miejsca> result = new ArrayList<>();
 
         if (cursor.moveToFirst()) {
             do {
                 Miejsca miejsca = new Miejsca();
-                miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+               // miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 miejsca.setBudynek(cursor.getString(cursor.getColumnIndex("Budynek")));
                 miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
                 miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
@@ -151,6 +158,8 @@ public class Database extends SQLiteAssetHelper {
                 result.add(miejsca);
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return result;
     }
 }
