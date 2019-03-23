@@ -1,13 +1,16 @@
 package com.example.arkadiusz.juraszamap;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class myChoice extends AppCompatActivity {
+public class MyChoice extends AppCompatActivity {
 
 
     @Override
@@ -24,6 +27,18 @@ public class myChoice extends AppCompatActivity {
             getSupportActionBar().setTitle("opis");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        RelativeLayout parentLayout;
+        parentLayout = findViewById(R.id.relLa);
+        parentLayout.setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(v.getContext(), EditRequest.class);
+                startActivity(intent);
+                finish();
+                return false;
+            }
+        });
     }
 
     private void getIncomingIntent() {

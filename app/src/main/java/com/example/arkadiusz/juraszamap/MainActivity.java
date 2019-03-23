@@ -95,20 +95,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(v.getContext(), searchOnBuild.class);
+                Intent intent = new Intent(v.getContext(), SearchOnBuild.class);
                 startActivity(intent);
                 finish();
                 }
         });
 
-        Button btn2 = findViewById(R.id.end_button);
-        btn2.setOnClickListener(new View.OnClickListener() {
-
+        Button btnOption = findViewById(R.id.option_button);
+        btnOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                Intent intent = new Intent(v.getContext(), MenuOption.class);
+                startActivity(intent);
                 finish();
-                System.exit(0);
             }
         });
     }

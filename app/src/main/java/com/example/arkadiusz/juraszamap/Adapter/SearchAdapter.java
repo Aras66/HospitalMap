@@ -6,12 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.arkadiusz.juraszamap.Model.Miejsca;
+import com.example.arkadiusz.juraszamap.MyChoice;
 import com.example.arkadiusz.juraszamap.R;
-import com.example.arkadiusz.juraszamap.myChoice;
 
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, myChoice.class);
+                Intent intent = new Intent(context, MyChoice.class);
                 intent.putExtra("budynek", miejsca.get(position).getBudynek());
                 intent.putExtra("pietro", String.valueOf(miejsca.get(position).getPietro()));
                 intent.putExtra("opis", miejsca.get(position).getOpis());

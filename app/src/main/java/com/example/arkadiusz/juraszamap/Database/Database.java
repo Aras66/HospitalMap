@@ -68,7 +68,7 @@ public class Database extends SQLiteAssetHelper {
 
         SQLiteDatabase db = getReadableDatabase();
 
-        String selectQuery = "SELECT Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek and Opis like '"+opis+"'";
+        String selectQuery = "SELECT Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek and Opis like '%"+opis+"%'";
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         List<Miejsca> result = new ArrayList<>();

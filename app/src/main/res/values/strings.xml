@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">JuraszaMap</string>
-    <string name="zako_cz">Zakończ</string>
+    <string name="menu">OPT</string>
     <string name="wyszukaj_w_budynku">Wyszukaj w budynku</string>
-    <string name="powr_t">Powrót</string>
+    <string name="powr_t">Znajdź oddział</string>
 </resources>

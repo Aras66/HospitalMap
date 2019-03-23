@@ -14,7 +14,7 @@ import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
 import java.util.List;
 
-public class searchOnBuild extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinner, spinner2 ;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -45,8 +45,18 @@ public class searchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
         infoSet();
 
-        Button btn1 = findViewById(R.id.back_button);
-        btn1.setOnClickListener(new View.OnClickListener() {
+        Button btnOption = findViewById(R.id.option_button);
+        btnOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(v.getContext(), MenuOption.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        Button btnBack = findViewById(R.id.back_button);
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".MainActivity">
 
     <com.mancj.materialsearchbar.MaterialSearchBar
@@ -12,20 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginTop="16dp"
         app:mt_hint="Search"
         app:mt_speechMode="false" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="8">
 
     </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -33,23 +35,23 @@
             android:id="@+id/other_search_button"
             android:textColor="#FFFFFF"
             android:layout_margin="8dp"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
+            android:textSize="14sp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:text="@string/wyszukaj_w_budynku" />
 
         <Button
-            android:id="@+id/end_button"
-             android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
+            android:id="@+id/option_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/buttonshape"
+            android:layout_margin="8dp"
             android:layout_weight="1"
-            android:text="@string/zako_cz" />
+            android:background="@drawable/buttonshape"
+            android:text="@string/menu"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>
