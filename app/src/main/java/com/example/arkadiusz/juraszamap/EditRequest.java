@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class EditRequest extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_request);
+        getIncomingIntent();
+
         Button btnOption = findViewById(R.id.send_request_button);
         btnOption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -21,5 +24,31 @@ public class EditRequest extends Activity {
                 finish();
             }
         });
+    }
+    private void getIncomingIntent() {
+
+        if (getIntent().hasExtra("opis") && getIntent().hasExtra("uwagi") && getIntent().hasExtra("budynek") && getIntent().hasExtra("pietro")) {
+
+            String budynek = getIntent().getStringExtra("budynek");
+            String pietro = getIntent().getStringExtra("pietro");
+            String opis = getIntent().getStringExtra("opis");
+            String uwagi = getIntent().getStringExtra("uwagi");
+
+            setMyChoice(budynek, pietro, opis, uwagi);
+
+        }
+    }
+    private void setMyChoice(String budynek, String pietro, String opis, String uwagi) {
+        EditText budynek2 = findViewById(R.id.myBudynek);
+        budynek2.setText(budynek);
+        EditText pietro2 = findViewById(R.id.myPietro);
+        pietro2.setText(pietro);
+        EditText opis2 = findViewById(R.id.myOpis);
+        opis2.setText(opis);
+        EditText uwagi2 = findViewById(R.id.myUwagi);
+        uwagi2.setText(uwagi);
+ //       TextView opisBudy = findViewById(R.id.opisBud);
+ //       opisBudy.setText(opisBudynku);
+
     }
 }

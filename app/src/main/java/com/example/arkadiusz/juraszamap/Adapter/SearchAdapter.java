@@ -52,7 +52,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
         holder.opis.setText(miejsca.get(position).getOpis());
         holder.uwagi.setText(miejsca.get(position).getUwagi());
         holder.opisBud.setText(miejsca.get(position).getOpisBudynku());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +62,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
                 intent.putExtra("uwagi", miejsca.get(position).getUwagi());
                 intent.putExtra("opisBud", miejsca.get(position).getOpisBudynku());
                 context.startActivity(intent);
-
             }
         });
     }

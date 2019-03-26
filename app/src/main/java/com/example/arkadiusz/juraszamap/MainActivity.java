@@ -1,6 +1,7 @@
 package com.example.arkadiusz.juraszamap;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
@@ -19,16 +21,24 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String COLOR_SWITCH = "colorSwitch";
+    private boolean switchOnOff;
+
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     SearchAdapter adapter;
     MaterialSearchBar materialSearchBar;
     List<String> suggestList = new ArrayList<>();
-
     Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        colorVersion();
+        if(switchOnOff){
+            setTheme(R.style.darkTheme);
+        }
+        else {setTheme(R.style.AppTheme);}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,13 +47,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
+       // colorVersionAction();
         materialSearchBar = findViewById(R.id.search_bar);
-
         database = new Database(this);
-
         materialSearchBar.setHint("Szukaj");
         materialSearchBar.setCardViewElevation(10);
         loadSuggestList();
+       // if(switchOnOff){
+       //     setTheme(R.style.AppTheme);
+          //  restartApp();
+      //  }
+       // else {
+      //      setTheme(R.style.darkTheme);
+         //   restartApp();
+       // }
         materialSearchBar.addTextChangeListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -113,6 +130,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void colorVersionAction() {
+        Toast.makeText(this, "Jest "+switchOnOff+"", Toast.LENGTH_SHORT).show();
+    }
+
+    private void colorVersion() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        switchOnOff = sharedPreferences.getBoolean(COLOR_SWITCH, false);
+    }
+
     private void startSearch(String s) {
         adapter = new SearchAdapter(this,database.getMiejscePoOpis(s));
         recyclerView.setAdapter(adapter);
@@ -121,9 +147,15 @@ public class MainActivity extends AppCompatActivity {
     private void loadSuggestList() {
         suggestList = database.getOpisy();
         materialSearchBar.setLastSuggestions(suggestList);
+
     }
+    private void restartApp() {
 
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
 
+    }
 
 
 }

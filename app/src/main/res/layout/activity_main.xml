@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
+    android:background="?attr/backgroundcolor"
     tools:context=".MainActivity">
 
     <com.mancj.materialsearchbar.MaterialSearchBar
@@ -15,13 +16,16 @@
         android:layout_weight="1"
         android:layout_marginTop="16dp"
         app:mt_hint="Search"
-        app:mt_speechMode="false" />
+        app:mt_speechMode="false"
+        android:background="?attr/backgroundcolor"
+        android:textColor="?attr/textcolor"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_search"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8">
+        android:layout_weight="8"
+        android:background="?attr/backgroundcolor">
 
     </android.support.v7.widget.RecyclerView>
 

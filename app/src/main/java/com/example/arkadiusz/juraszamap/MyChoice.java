@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class MyChoice extends AppCompatActivity {
 
-
+String budynek = "o", pietro = "j", opis="p", uwagi="k", opisBudynku="m";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,11 @@ public class MyChoice extends AppCompatActivity {
             @Override
             public boolean onLongClick(View v) {
                 Intent intent = new Intent(v.getContext(), EditRequest.class);
+                intent.putExtra("budynek", budynek);
+                intent.putExtra("pietro", pietro);
+                intent.putExtra("opis", opis);
+                intent.putExtra("uwagi", uwagi);
+                intent.putExtra("opisBud", opisBudynku);
                 startActivity(intent);
                 finish();
                 return false;
@@ -45,14 +50,13 @@ public class MyChoice extends AppCompatActivity {
 
         if (getIntent().hasExtra("opis") && getIntent().hasExtra("uwagi") && getIntent().hasExtra("budynek") && getIntent().hasExtra("pietro")) {
 
-            String budynek = getIntent().getStringExtra("budynek");
-            String pietro = getIntent().getStringExtra("pietro");
-            String opis = getIntent().getStringExtra("opis");
-            String uwagi = getIntent().getStringExtra("uwagi");
-            String opisBudynku = getIntent().getStringExtra("opisBudynku");
+            budynek = getIntent().getStringExtra("budynek");
+            pietro = getIntent().getStringExtra("pietro");
+            opis = getIntent().getStringExtra("opis");
+            uwagi = getIntent().getStringExtra("uwagi");
+            opisBudynku = getIntent().getStringExtra("opisBudynku");
 
             setMyChoice(budynek, pietro, opis, uwagi, opisBudynku);
-
         }
     }
 
