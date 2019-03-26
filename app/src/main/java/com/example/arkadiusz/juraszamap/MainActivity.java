@@ -148,10 +148,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void restartApp() {
-
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
-
     }
 }
