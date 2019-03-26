@@ -11,11 +11,9 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
 import com.mancj.materialsearchbar.MaterialSearchBar;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,6 +154,4 @@ public class MainActivity extends AppCompatActivity {
             finish();
 
     }
-
-
 }
