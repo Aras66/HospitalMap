@@ -10,14 +10,25 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class MyChoice extends AppCompatActivity {
 
 String budynek = "o", pietro = "j", opis="p", uwagi="k", opisBudynku="m";
+    private AdView mAdView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.my_choice);
+
+        // ads apply
+        MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
+        mAdView = this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         getIncomingIntent();
 

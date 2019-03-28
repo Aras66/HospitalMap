@@ -8,17 +8,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class MenuOption extends AppCompatActivity {
 
     private Switch colorSwitch;
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String COLOR_SWITCH = "colorSwitch";
+    private AdView mAdView;
 
     private boolean switchOnOff;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_options);
+
+        // ads apply
+        MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
+        mAdView = this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
         Button confirmButton = findViewById(R.id.confirm_button);
         colorSwitch = findViewById(R.id.color_switch);
         confirmButton.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String COLOR_SWITCH = "colorSwitch";
     private boolean switchOnOff;
+    private AdView mAdView;
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -39,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         else {setTheme(R.style.AppTheme);}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // ads apply
+        MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
+        mAdView = this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         recyclerView=findViewById(R.id.recycler_search);
         layoutManager= new LinearLayoutManager(this);
