@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.google.android.gms.ads.AdRequest;
@@ -22,10 +24,11 @@ public class MenuOption extends AppCompatActivity {
     private AdView mAdView;
 
     private boolean switchOnOff;
+
     protected void onCreate(Bundle savedInstanceState) {
         loadData();
         Log.d(SHARED_PREFS, String.valueOf(switchOnOff));
-        if(switchOnOff) {
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.darkTheme);
         }
         else {
@@ -34,12 +37,34 @@ public class MenuOption extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_options);
-
+        colorSwitch=findViewById(R.id.color_switch);
 // Nie dziala
 
-        colorSwitch = findViewById(R.id.color_switch);
-        if(switchOnOff) {colorSwitch.setTextOff("Jasny");}
-        else{colorSwitch.setTextOn("Ciemny");}
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES) {
+            colorSwitch.setChecked(true);
+            colorSwitch.setText(getString(R.string.color_switch_dark));
+        }
+        else {
+            setTheme(R.style.AppTheme);
+            colorSwitch.setText(getString(R.string.color_switch_light));
+        }
+        colorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    saveData();
+                    colorSwitch.setText(getString(R.string.color_switch_dark));
+                    restartApp();
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    saveData();
+                    colorSwitch.setText(getString(R.string.color_switch_light));
+                    restartApp();
+                }
+            }
+        });
 
         // adds ads
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
@@ -75,6 +100,7 @@ public void  loadData(){
 public void  updateViews(){
 colorSwitch.setChecked(switchOnOff);
 }
+
     private void restartApp() {
         Intent intent = new Intent(getApplicationContext(), MenuOption.class);
         startActivity(intent);

@@ -9,4 +9,6 @@
     <string name="pietro_w_budynku">pietro 44</string>
     <string name="main_opis">zakłąd karny f</string>
     <string name="main_uwagi">segment y</string>
+    <string name="color_switch_dark">Ciemny</string>
+    <string name="color_switch_light">Jasny</string>
 </resources>
