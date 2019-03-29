@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         colorVersion();
         if(switchOnOff){
             setTheme(R.style.darkTheme);
-        }
-        else {setTheme(R.style.AppTheme);}
+        }        else {setTheme(R.style.AppTheme);}
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-       // colorVersionAction();
         materialSearchBar = findViewById(R.id.search_bar);
         database = new Database(this);
         materialSearchBar.setHint("Szukaj");

@@ -3,4 +3,10 @@
     <string name="menu">OPT</string>
     <string name="wyszukaj_w_budynku">Wyszukaj w budynku</string>
     <string name="powr_t">Znajdź oddział</string>
+    <string name="main_opis_budynku">blok</string>
+    <string name="final_pietro">piętro :</string>
+    <string name="nazwa_budynku">budynek f</string>
+    <string name="pietro_w_budynku">pietro 44</string>
+    <string name="main_opis">zakłąd karny f</string>
+    <string name="main_uwagi">segment y</string>
 </resources>

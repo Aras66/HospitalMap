@@ -2,6 +2,7 @@ package com.example.arkadiusz.juraszamap;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +13,17 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 public class EditRequest extends Activity {
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String COLOR_SWITCH = "colorSwitch";
+    private boolean switchOnOff;
     private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        colorVersion();
+        if(switchOnOff){
+            setTheme(R.style.darkTheme);
+        }        else {setTheme(R.style.AppTheme);}
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_request);
 
@@ -61,5 +70,9 @@ public class EditRequest extends Activity {
  //       TextView opisBudy = findViewById(R.id.opisBud);
  //       opisBudy.setText(opisBudynku);
 
+    }
+    private void colorVersion() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        switchOnOff = sharedPreferences.getBoolean(COLOR_SWITCH, false);
     }
 }

@@ -2,6 +2,7 @@ package com.example.arkadiusz.juraszamap;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +17,18 @@ import com.google.android.gms.ads.MobileAds;
 
 public class MyChoice extends AppCompatActivity {
 
-String budynek = "o", pietro = "j", opis="p", uwagi="k", opisBudynku="m";
+    private String budynek = "o", pietro = "j", opis="p", uwagi="k", opisBudynku="m";
     private AdView mAdView;
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String COLOR_SWITCH = "colorSwitch";
+    private boolean switchOnOff;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        colorVersion();
+        if(switchOnOff){
+            setTheme(R.style.darkTheme);
+        }        else {setTheme(R.style.AppTheme);}
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.my_choice);
@@ -85,5 +94,9 @@ String budynek = "o", pietro = "j", opis="p", uwagi="k", opisBudynku="m";
         TextView opisBudy = findViewById(R.id.opisBud);
        opisBudy.setText(opisBudynku);
 
+    }
+    private void colorVersion() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        switchOnOff = sharedPreferences.getBoolean(COLOR_SWITCH, false);
     }
 }

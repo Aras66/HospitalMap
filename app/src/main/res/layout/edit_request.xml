@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/backgroundcolor">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="?attr/textcolor"
         android:text="Opis :" />
 
     <EditText
@@ -19,6 +21,7 @@
         android:maxLines="1"
         android:inputType="text"
         android:imeOptions="actionDone"
+        android:textColor="?attr/textcolor"
         android:text="Treść opisu" />
 
     <TextView
@@ -26,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="?attr/textcolor"
         android:text="Piętro :" />
 
     <EditText
@@ -36,6 +40,7 @@
         android:maxLines="1"
         android:inputType="phone"
         android:imeOptions="actionDone"
+        android:textColor="?attr/textcolor"
         android:text="Wartość piętro" />
 
     <TextView
@@ -43,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="?attr/textcolor"
         android:text="Budynek :" />
 
     <EditText
@@ -53,6 +59,7 @@
         android:maxLines="1"
         android:inputType="text"
         android:imeOptions="actionDone"
+        android:textColor="?attr/textcolor"
         android:hint="Wartość Budynek" />
 
     <TextView
@@ -60,6 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="?attr/textcolor"
         android:text="Uwagi :" />
 
     <EditText
@@ -70,6 +78,7 @@
         android:maxLines="1"
         android:inputType="text"
         android:imeOptions="actionDone"
+        android:textColor="?attr/textcolor"
         android:text="Wartość uwagi" />
 
     <TextView
@@ -77,6 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="?attr/textcolor"
         android:text="Telefon :" />
 
     <EditText
@@ -87,6 +97,7 @@
         android:maxLines="1"
         android:inputType="text"
         android:imeOptions="actionDone"
+        android:textColor="?attr/textcolor"
         android:text="Wartość telefon" />
 
     <com.google.android.gms.ads.AdView
@@ -103,12 +114,12 @@
 
     <Button
         android:id="@+id/send_request_button"
-        android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:background="@drawable/buttonshape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="?attr/textcolor"
         android:text="Zatwierdź" />
 
 </LinearLayout>

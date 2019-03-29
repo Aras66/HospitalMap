@@ -1,6 +1,7 @@
 package com.example.arkadiusz.juraszamap;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,11 +26,19 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
     SearchAdapter adapter;
     Database database;
     String budynek, pietro;
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String COLOR_SWITCH = "colorSwitch";
+    private boolean switchOnOff;
 
     private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        colorVersion();
+        if(switchOnOff){
+            setTheme(R.style.darkTheme);
+        }        else {setTheme(R.style.AppTheme);}
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_on_build);
 
@@ -181,6 +190,9 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         // TODO Auto-generated method stub
 
     }
-
+    private void colorVersion() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        switchOnOff = sharedPreferences.getBoolean(COLOR_SWITCH, false);
+    }
 
 }

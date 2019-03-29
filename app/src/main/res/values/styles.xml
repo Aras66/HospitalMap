@@ -8,9 +8,10 @@
         <item name="colorAccent">#FF4081</item>
         <item name="backgroundcolor">#fcfcfc</item>
         <item name="cardbackground">#ffffff</item>
-        <item name="textcolor">#808080</item>
-        <item name="tintcolor">#000000</item>
+        <item name="textcolor">#000000</item>
+        <item name="tintcolor">#808080</item>
         <item name="buttoncolor">#2196F3</item>
+
     </style>
     <!-- Dark application theme. -->
     <style name="darkTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -23,6 +24,7 @@
         <item name="textcolor">#ffffff</item>
         <item name="tintcolor">#ffffff</item>
         <item name="buttoncolor">#2196F3</item>
+
     </style>
 
 </resources>

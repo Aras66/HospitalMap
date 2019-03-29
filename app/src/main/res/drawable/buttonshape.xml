@@ -4,11 +4,11 @@
         android:radius="12dp"
         />
     <solid
-        android:color="@color/buttonSolid"
+        android:color="?attr/backgroundcolor"
         />
 
     <stroke
         android:width="1dp"
-        android:color="@color/buttonStroke"
+        android:color="?attr/tintcolor"
         />
 </shape>

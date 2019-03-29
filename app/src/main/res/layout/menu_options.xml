@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/relLa">
+    android:id="@+id/relLa"
+    android:background="?attr/backgroundcolor">
 
     <TextView
         android:id="@+id/textView12"
@@ -14,7 +15,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-
+        android:textColor="?attr/textcolor"
         android:text="Opcje :" />
 
     <Switch
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView12"
         android:layout_margin="16dp"
+        android:textColor="?attr/textcolor"
         android:text="Jasny" />
 
     <TextView
@@ -31,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/color_switch"
         android:layout_margin="16dp"
+        android:textColor="?attr/textcolor"
         android:text="Język" />
 
     <Spinner
@@ -38,7 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/textView15"
-        android:layout_toEndOf="@+id/textView15"/>
+        android:layout_toEndOf="@+id/textView15"
+        android:textColor="?attr/textcolor"/>
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -57,9 +61,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:background="@drawable/buttonshape"
+        android:textColor="?attr/textcolor"
         android:text="Zatwierdź"
         android:layout_margin="16dp"/>
 
