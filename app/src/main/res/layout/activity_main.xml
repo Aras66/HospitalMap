@@ -9,16 +9,17 @@
     android:background="?attr/backgroundcolor"
     tools:context=".MainActivity">
 
-    <com.mancj.materialsearchbar.MaterialSearchBar
-        android:id="@+id/search_bar"
+    <AutoCompleteTextView
+        android:id="@+id/actv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:hint="Wyszukaj oddział"
         android:layout_marginTop="16dp"
-        app:mt_hint="Search"
-        app:mt_speechMode="false"
-        android:background="?attr/backgroundcolor"
-        android:textColor="?attr/textcolor"/>
+        android:completionThreshold="1"
+        android:maxLines="1"
+        android:inputType="text"
+        android:imeOptions="actionDone"
+        android:textColor="?attr/textcolor" />
 
    <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_search"

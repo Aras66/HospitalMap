@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +27,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".EditRequest"
+            android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".MainActivity" />
 
             <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->

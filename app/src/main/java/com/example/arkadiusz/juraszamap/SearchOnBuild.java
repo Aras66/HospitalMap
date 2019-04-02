@@ -36,7 +36,7 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         colorVersion();
         if(switchOnOff){
-            setTheme(R.style.darkTheme);
+            setTheme(R.style.DarkTheme);
         }        else {setTheme(R.style.AppTheme);}
 
         super.onCreate(savedInstanceState);
@@ -127,29 +127,19 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
         // Spinner Drop down elements
         List<String> lables = db.getAllNamesBuilding();
-        List<String> lables2 = db.getAllLevelBuilding(budynek);
+
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, lables);
+                R.layout.spinner_layout, lables);
 
         // Drop down layout style - list view with radio button
         dataAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                .setDropDownViewResource(R.layout.spinner_layout);
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
 
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, lables2);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter2
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        spinner2.setAdapter(dataAdapter2);
     }
     private void loadSpinnerData2() {
         // database handler
@@ -160,11 +150,11 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, lables2);
+                R.layout.spinner_layout, lables2);
 
         // Drop down layout style - list view with radio button
         dataAdapter2
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                .setDropDownViewResource(R.layout.spinner_layout);
 
         // attaching data adapter to spinner
         spinner2.setAdapter(dataAdapter2);

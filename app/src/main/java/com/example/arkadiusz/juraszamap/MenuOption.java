@@ -26,10 +26,11 @@ public class MenuOption extends AppCompatActivity {
     private boolean switchOnOff;
 
     protected void onCreate(Bundle savedInstanceState) {
+        // sprawdza jaki jest zapisany layout
         loadData();
-        Log.d(SHARED_PREFS, String.valueOf(switchOnOff));
+        // ustawia żądany layout
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES) {
-            setTheme(R.style.darkTheme);
+            setTheme(R.style.DarkTheme);
         }
         else {
             setTheme(R.style.AppTheme);
@@ -38,7 +39,8 @@ public class MenuOption extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_options);
         colorSwitch=findViewById(R.id.color_switch);
-// Nie dziala
+
+        // Obsługuje przełączanie w czasie rzeczywistym i zmienia napis
 
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES) {
             colorSwitch.setChecked(true);
@@ -67,6 +69,7 @@ public class MenuOption extends AppCompatActivity {
         });
 
         // adds ads
+
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
         mAdView = this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -87,20 +90,23 @@ public class MenuOption extends AppCompatActivity {
         updateViews();
     }
 
+    //zapisuje ustawienie layoutu
     public void saveData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(COLOR_SWITCH, colorSwitch.isChecked());
         editor.apply();
     }
+    // sprawdza jaki jest zapisany layout
 public void  loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         switchOnOff = sharedPreferences.getBoolean(COLOR_SWITCH, false);
 }
+    // sprawdza jaki jest żądany layout
 public void  updateViews(){
 colorSwitch.setChecked(switchOnOff);
 }
-
+// restartuje aplikacje by mogła zmienić layout podczas przełączania switcha
     private void restartApp() {
         Intent intent = new Intent(getApplicationContext(), MenuOption.class);
         startActivity(intent);

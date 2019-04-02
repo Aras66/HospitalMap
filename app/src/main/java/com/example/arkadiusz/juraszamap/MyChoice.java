@@ -26,7 +26,7 @@ public class MyChoice extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         colorVersion();
         if(switchOnOff){
-            setTheme(R.style.darkTheme);
+            setTheme(R.style.DarkTheme);
         }        else {setTheme(R.style.AppTheme);}
 
         super.onCreate(savedInstanceState);
