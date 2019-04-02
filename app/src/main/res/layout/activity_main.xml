@@ -36,8 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        ads:adSize="FULL_BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        ads:adSize="@string/adds_size_in_xml"
+        ads:adUnitId="@string/adds_in_xml">
     </com.google.android.gms.ads.AdView>
 
         <LinearLayout

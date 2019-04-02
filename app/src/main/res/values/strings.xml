@@ -32,4 +32,7 @@
     <string name="myChoice_pietro">Piętro</string>
     <string name="myChoice_opis_budynku_wartosc">Nieznany</string>
     <string name="button_menu_options">Zatwierdź</string>
+    <string name="adds_in_java">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="adds_in_xml">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="adds_size_in_xml">FULL_BANNER</string>
 </resources>

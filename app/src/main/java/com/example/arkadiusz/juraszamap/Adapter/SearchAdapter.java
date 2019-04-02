@@ -17,7 +17,7 @@ import java.util.List;
 class SearchViewHolder extends RecyclerView.ViewHolder {
 
     public TextView budynek, opis, uwagi, pietro, opisBud;
-
+    public int id;
     public SearchViewHolder(View itemView) {
         super(itemView);
         budynek = itemView.findViewById(R.id.budynek);
@@ -61,6 +61,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
                 intent.putExtra("opis", miejsca.get(position).getOpis());
                 intent.putExtra("uwagi", miejsca.get(position).getUwagi());
                 intent.putExtra("opisBud", miejsca.get(position).getOpisBudynku());
+                intent.putExtra("id", miejsca.get(position).getId());
                 context.startActivity(intent);
             }
         });

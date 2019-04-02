@@ -85,25 +85,6 @@
         android:textColor="?attr/textcolor"
         android:hint="@string/edit_warto_uwagi" />
 
-    <TextView
-        android:id="@+id/textView9"
-        style="@style/TextviewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textColor="?attr/textcolor"
-        android:text="@string/edit_telefon" />
-
-    <EditText
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:maxLines="1"
-        android:inputType="phone"
-        android:imeOptions="actionDone"
-        android:textColor="?attr/textcolor"
-        android:hint="@string/edit_warto_telefon" />
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -111,8 +92,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        ads:adSize="FULL_BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        ads:adSize="@string/adds_size_in_xml"
+        ads:adUnitId="@string/adds_in_xml">
     </com.google.android.gms.ads.AdView>
 
     <Button

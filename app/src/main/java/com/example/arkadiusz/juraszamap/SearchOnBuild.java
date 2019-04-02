@@ -42,7 +42,7 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
 
         // ads apply
-        MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(this,getString(R.string.adds_in_java));
         AdView mAdView = this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);

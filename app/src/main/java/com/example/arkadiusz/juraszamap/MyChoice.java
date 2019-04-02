@@ -16,7 +16,13 @@ import com.google.android.gms.ads.MobileAds;
 
 public class MyChoice extends AppCompatActivity {
 
-    private String budynek = "o", pietro = "j", opis="p", uwagi="k", opisBudynku="m";
+    private String budynek = "o";
+    private String pietro = "j";
+    private String opis="p";
+    private String uwagi="k";
+    private String opisBudynku="m";
+    private int id;
+
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String COLOR_SWITCH = "colorSwitch";
     private boolean switchOnOff;
@@ -32,7 +38,7 @@ public class MyChoice extends AppCompatActivity {
         setContentView(R.layout.my_choice);
 
         // ads apply
-        MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(this,getString(R.string.adds_in_java));
         AdView mAdView = this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -57,6 +63,7 @@ public class MyChoice extends AppCompatActivity {
                 intent.putExtra("opis", opis);
                 intent.putExtra("uwagi", uwagi);
                 intent.putExtra("opisBud", opisBudynku);
+                intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
                 return false;
@@ -73,12 +80,12 @@ public class MyChoice extends AppCompatActivity {
             opis = getIntent().getStringExtra("opis");
             uwagi = getIntent().getStringExtra("uwagi");
             opisBudynku = getIntent().getStringExtra("opisBudynku");
-
-            setMyChoice(budynek, pietro, opis, uwagi, opisBudynku);
+            id = getIntent().getIntExtra("id",id);
+            setMyChoice(budynek, pietro, opis, uwagi, opisBudynku, id);
         }
     }
 
-    private void setMyChoice(String budynek, String pietro, String opis, String uwagi, String opisBudynku) {
+    private void setMyChoice(String budynek, String pietro, String opis, String uwagi, String opisBudynku, Integer id) {
         RelativeLayout relativeLayout = findViewById(R.id.relLa);
         relativeLayout.setBackgroundResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
         TextView budynek2 = findViewById(R.id.myBudynek);
