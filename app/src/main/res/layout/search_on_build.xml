@@ -15,17 +15,17 @@
 
         <TextView
             android:id="@+id/textView"
+            style="@style/TextviewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:textColor="?attr/textcolor"
-            android:text="TextView"
+            android:text="@string/searchOnBuild_budynek"
             />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinner_building"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -35,17 +35,17 @@
 
         <TextView
             android:id="@+id/textView2"
+            style="@style/TextviewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="16dp"
-            android:text="TextView"
-            android:textColor="?attr/textcolor"
+            android:text="@string/searchonBuild_poziom"
             />
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spinner_level_of_building"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -66,10 +66,8 @@
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:layout_weight="1"
-        ads:adSize="BANNER"
+        ads:adSize="FULL_BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
     </com.google.android.gms.ads.AdView>
 
@@ -82,24 +80,22 @@
 
         <Button
             android:id="@+id/back_button"
+            style="@style/ButtonStyle"
             android:layout_margin="8dp"
-            android:textSize="14sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"
-            android:textColor="?attr/textcolor"
             android:layout_weight="4"
             android:text="@string/powr_t"
             />
 
         <Button
             android:id="@+id/option_button"
+            style="@style/ButtonStyle"
             android:layout_margin="8dp"
-            android:textSize="14sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"
-            android:textColor="?attr/textcolor"
             android:layout_weight="1"
             android:text="@string/menu" />
     </LinearLayout>

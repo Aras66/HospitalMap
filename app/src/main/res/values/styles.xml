@@ -30,5 +30,18 @@
         parent="@android:style/Widget.TextView.SpinnerItem">
         <item name="android:textColor">?attr/textcolor</item>
         <item name="android:background">?attr/backgroundcolor</item>
+        <item name="android:padding">2dp</item>
+    </style>
+    <style name="TextviewStyle">
+        <item name="android:textColor">?attr/textcolor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">2dp</item>
+    </style>
+    <style name="ButtonStyle">
+        <item name="android:textColor">?attr/textcolor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">10dp</item>
     </style>
 </resources>

@@ -30,8 +30,6 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
     public static final String COLOR_SWITCH = "colorSwitch";
     private boolean switchOnOff;
 
-    private AdView mAdView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         colorVersion();
@@ -45,7 +43,7 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
         // ads apply
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
-        mAdView = this.findViewById(R.id.adView);
+        AdView mAdView = this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -58,9 +56,9 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(false);
 
-        spinner = findViewById(R.id.spinner);
+        spinner = findViewById(R.id.spinner_building);
         spinner.setOnItemSelectedListener(this);
-        spinner2 = findViewById(R.id.spinner2);
+        spinner2 = findViewById(R.id.spinner_level_of_building);
         spinner2.setOnItemSelectedListener(this);
         loadSpinnerData();
 
@@ -90,6 +88,8 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
+        // load data to the spinner_level_of_building
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> av, View v,
@@ -104,6 +104,8 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {}
         });
+
+        // load data to the spinner_building
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> av, View v,
@@ -160,12 +162,11 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         spinner2.setAdapter(dataAdapter2);
     }
 
+    // showed loading new data selected by user
 
     public void infoSet(){
-      /*  Toast.makeText(this, "You selected: " + budynek + " " + pietro ,
-                Toast.LENGTH_LONG).show();  */
 
-        adapter = new SearchAdapter(this,database.getOpisPoBudynku(budynek, pietro));
+       adapter = new SearchAdapter(this,database.getOpisPoBudynku(budynek, pietro));
         recyclerView.setAdapter(adapter);
 
     }

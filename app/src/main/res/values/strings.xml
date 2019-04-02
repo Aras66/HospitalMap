@@ -11,4 +11,25 @@
     <string name="main_uwagi">segment y</string>
     <string name="color_switch_dark">Ciemny</string>
     <string name="color_switch_light">Jasny</string>
+    <string name="edit_opis">Opis :</string>
+    <string name="edit_tre_opisu">Treść opisu</string>
+    <string name="edit_pietro">Piętro :</string>
+    <string name="edit_warto_pietro">Wartość piętro</string>
+    <string name="edit_budynek">Budynek :</string>
+    <string name="edit_warto_budynek">Wartość Budynek</string>
+    <string name="edit_uwagi">Uwagi :</string>
+    <string name="edit_warto_uwagi">Wartość uwagi</string>
+    <string name="edit_telefon">Telefon :</string>
+    <string name="edit_warto_telefon">Wartość telefon</string>
+    <string name="edit_zatwierd">Zatwierdź</string>
+    <string name="searchOnBuild_budynek">Budynek :</string>
+    <string name="searchonBuild_poziom">Poziom :</string>
+    <string name="myChoice_opis_budynku">opis budynku</string>
+    <string name="myChoice_uwagi_do_opisu">uwagi do opisu</string>
+    <string name="myChoice_budynek">Budynek :</string>
+    <string name="myChoice_budynek_wartosc">A</string>
+    <string name="myChoice_pietro_poziom">2</string>
+    <string name="myChoice_pietro">Piętro</string>
+    <string name="myChoice_opis_budynku_wartosc">Nieznany</string>
+    <string name="button_menu_options">Zatwierdź</string>
 </resources>

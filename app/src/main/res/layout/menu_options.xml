@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/textView12"
+        style="@style/TextviewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -24,25 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView12"
         android:layout_margin="16dp"
+        android:textSize="18sp"
         android:textColor="?attr/textcolor"
         android:text="Jasny" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/color_switch"
-        android:layout_margin="16dp"
-        android:textColor="?attr/textcolor"
-        android:text="Język" />
-
-    <Spinner
-        android:id="@+id/lang_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textView15"
-        android:layout_toEndOf="@+id/textView15"
-        android:textColor="?attr/textcolor"/>
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -51,20 +36,19 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/confirm_button"
-        ads:adSize="BANNER"
+        ads:adSize="FULL_BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
     </com.google.android.gms.ads.AdView>
 
     <Button
         android:id="@+id/confirm_button"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:textSize="14sp"
         android:background="@drawable/buttonshape"
-        android:textColor="?attr/textcolor"
-        android:text="Zatwierdź"
+        android:text="@string/button_menu_options"
         android:layout_margin="16dp"/>
 
 </RelativeLayout>

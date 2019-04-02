@@ -21,7 +21,6 @@ public class MenuOption extends AppCompatActivity {
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String COLOR_SWITCH = "colorSwitch";
-    private AdView mAdView;
 
     private boolean switchOnOff;
 
@@ -71,7 +70,7 @@ public class MenuOption extends AppCompatActivity {
         // adds ads
 
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
-        mAdView = this.findViewById(R.id.adView);
+        AdView mAdView = this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

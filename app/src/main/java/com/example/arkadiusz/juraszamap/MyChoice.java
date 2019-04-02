@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,7 +17,6 @@ import com.google.android.gms.ads.MobileAds;
 public class MyChoice extends AppCompatActivity {
 
     private String budynek = "o", pietro = "j", opis="p", uwagi="k", opisBudynku="m";
-    private AdView mAdView;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String COLOR_SWITCH = "colorSwitch";
     private boolean switchOnOff;
@@ -35,7 +33,7 @@ public class MyChoice extends AppCompatActivity {
 
         // ads apply
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
-        mAdView = this.findViewById(R.id.adView);
+        AdView mAdView = this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -81,8 +79,8 @@ public class MyChoice extends AppCompatActivity {
     }
 
     private void setMyChoice(String budynek, String pietro, String opis, String uwagi, String opisBudynku) {
-        LinearLayout linearLayout = findViewById(R.id.myChoice);
-        linearLayout.setBackgroundResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
+        RelativeLayout relativeLayout = findViewById(R.id.relLa);
+        relativeLayout.setBackgroundResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
         TextView budynek2 = findViewById(R.id.myBudynek);
         budynek2.setText(budynek);
         TextView pietro2 = findViewById(R.id.myPietro);

@@ -7,11 +7,12 @@
 
     <TextView
         android:id="@+id/textView3"
+        style="@style/TextviewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textColor="?attr/textcolor"
-        android:text="Opis :" />
+        android:text="@string/edit_opis" />
 
     <EditText
         android:id="@+id/myOpis"
@@ -22,15 +23,16 @@
         android:inputType="text"
         android:imeOptions="actionDone"
         android:textColor="?attr/textcolor"
-        android:text="Treść opisu" />
+        android:text="@string/edit_tre_opisu" />
 
     <TextView
         android:id="@+id/textView5"
+        style="@style/TextviewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textColor="?attr/textcolor"
-        android:text="Piętro :" />
+        android:text="@string/edit_pietro" />
 
     <EditText
         android:id="@+id/myPietro"
@@ -41,15 +43,16 @@
         android:inputType="phone"
         android:imeOptions="actionDone"
         android:textColor="?attr/textcolor"
-        android:text="Wartość piętro" />
+        android:text="@string/edit_warto_pietro" />
 
     <TextView
         android:id="@+id/textView7"
+        style="@style/TextviewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textColor="?attr/textcolor"
-        android:text="Budynek :" />
+        android:text="@string/edit_budynek" />
 
     <EditText
         android:id="@+id/myBudynek"
@@ -60,15 +63,16 @@
         android:inputType="text"
         android:imeOptions="actionDone"
         android:textColor="?attr/textcolor"
-        android:hint="Wartość Budynek" />
+        android:hint="@string/edit_warto_budynek" />
 
     <TextView
         android:id="@+id/textView11"
+        style="@style/TextviewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textColor="?attr/textcolor"
-        android:text="Uwagi :" />
+        android:text="@string/edit_uwagi" />
 
     <EditText
         android:id="@+id/myUwagi"
@@ -79,15 +83,16 @@
         android:inputType="text"
         android:imeOptions="actionDone"
         android:textColor="?attr/textcolor"
-        android:text="Wartość uwagi" />
+        android:hint="@string/edit_warto_uwagi" />
 
     <TextView
         android:id="@+id/textView9"
+        style="@style/TextviewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textColor="?attr/textcolor"
-        android:text="Telefon :" />
+        android:text="@string/edit_telefon" />
 
     <EditText
         android:id="@+id/textView10"
@@ -95,31 +100,28 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:maxLines="1"
-        android:inputType="text"
+        android:inputType="phone"
         android:imeOptions="actionDone"
         android:textColor="?attr/textcolor"
-        android:text="Wartość telefon" />
+        android:hint="@string/edit_warto_telefon" />
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        ads:adSize="BANNER"
+        ads:adSize="FULL_BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
     </com.google.android.gms.ads.AdView>
 
     <Button
         android:id="@+id/send_request_button"
-        android:textSize="14sp"
+        style="@style/ButtonStyle"
         android:background="@drawable/buttonshape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textColor="?attr/textcolor"
-        android:text="Zatwierdź" />
+        android:text="@string/edit_zatwierd" />
 
 </LinearLayout>
