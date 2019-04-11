@@ -71,7 +71,6 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         btnOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Intent intent = new Intent(v.getContext(), MenuOption.class);
                 startActivity(intent);
                 finish();
@@ -81,7 +80,6 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -178,7 +176,6 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
 
     }
     private void colorVersion() {

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
-
 import com.example.arkadiusz.juraszamap.Model.Miejsca;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -50,15 +49,24 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qd = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"Opis"};
+        String[] sqlSelect = {"Opis","Uwagi"};
         String tablename = "Jurasza";
 
         qd.setTables(tablename);
+
+        // TODO usunąć nulle w zapytaniu
+
         Cursor cursor = qd.query(db, sqlSelect, null, null, null, null, null);
+
         List<String> result = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
                 result.add(cursor.getString(cursor.getColumnIndex("Opis")));
+            } while (cursor.moveToNext());
+            cursor.moveToFirst();
+            do {
+                if(cursor.getString(cursor.getColumnIndex("Uwagi"))!=null){
+                result.add(String.valueOf(cursor.getString(cursor.getColumnIndex("Uwagi"))));}
             } while (cursor.moveToNext());
         }
         return result;
@@ -68,7 +76,7 @@ public class Database extends SQLiteAssetHelper {
 
         SQLiteDatabase db = getReadableDatabase();
 
-        String selectQuery = "SELECT Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud,ID FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek and Opis like '%"+opis+"%' ";
+        String selectQuery = "SELECT Jurasza.Budynek,Jurasza.Pietro,Jurasza.Opis,Jurasza.Uwagi,Budynki.Opisbud,Jurasza.ID FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek and (Jurasza.Opis like '%"+opis+"%' or Jurasza.Uwagi like '%"+opis+"%') ";
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         List<Miejsca> result = new ArrayList<>();
@@ -88,34 +96,11 @@ public class Database extends SQLiteAssetHelper {
         db.close();
         return result;
     }
-    public List<Miejsca> getMiejscePoUwagi(String opis) {
 
-        SQLiteDatabase db = getReadableDatabase();
-
-        String selectQuery = "SELECT Jurasza.Budynek,Pietro,Opis,Uwagi,Opisbud,ID FROM Jurasza INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek and Uwagi like '%"+opis+"%' ";
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        List<Miejsca> result = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            do {
-                Miejsca miejsca = new Miejsca();
-                miejsca.setId(cursor.getInt(cursor.getColumnIndex("ID")));
-                miejsca.setBudynek(cursor.getString(cursor.getColumnIndex("Budynek")));
-                miejsca.setPietro(cursor.getInt(cursor.getColumnIndex("Pietro")));
-                miejsca.setOpis(cursor.getString(cursor.getColumnIndex("Opis")));
-                miejsca.setUwagi(cursor.getString(cursor.getColumnIndex("Uwagi")));
-                miejsca.setOpisBudynku(cursor.getString(cursor.getColumnIndex("Opisbud")));
-                result.add(miejsca);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        return result;
-    }
     public List<String> getAllNamesBuilding(){
         String sqlSelect = "Budynek";
         String tableName = "Jurasza";
-        List<String> labels = new ArrayList<>();
+        List<String> result = new ArrayList<>();
 
         // Select All Query
         String selectQuery = "SELECT  " +sqlSelect+ " FROM " +tableName+ " GROUP BY " +sqlSelect+ " ORDER BY " +sqlSelect+ "";
@@ -126,7 +111,7 @@ public class Database extends SQLiteAssetHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                labels.add(cursor.getString(0));
+                result.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
 
@@ -135,11 +120,11 @@ public class Database extends SQLiteAssetHelper {
         db.close();
 
         // returning lables
-        return labels;
+        return result;
     }
     public List<String> getAllLevelBuilding(String budynek){
 
-        List<String> labels = new ArrayList<>();
+        List<String> result = new ArrayList<>();
 
         // Select All Query
         String selectQuery = "SELECT Pietro FROM Jurasza WHERE Budynek = '"+budynek+"' GROUP BY Pietro ORDER BY Pietro";
@@ -150,7 +135,7 @@ public class Database extends SQLiteAssetHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                labels.add(cursor.getString(0));
+                result.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
 
@@ -159,7 +144,7 @@ public class Database extends SQLiteAssetHelper {
         db.close();
 
         // returning lables
-        return labels;
+        return result;
     }
     public  List<Miejsca> getOpisPoBudynku(String budynek, String pietro) {
         SQLiteDatabase db = this.getReadableDatabase();

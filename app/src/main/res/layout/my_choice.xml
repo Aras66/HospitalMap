@@ -88,7 +88,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="@string/adds_size_in_xml"
-        ads:adUnitId="@string/adds_in_xml">>
+        ads:adUnitId="@string/adds_in_xml">
     </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

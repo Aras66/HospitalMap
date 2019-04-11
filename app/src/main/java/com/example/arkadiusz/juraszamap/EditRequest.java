@@ -42,7 +42,6 @@ public class EditRequest extends Activity {
         btnOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 setRequest();
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 startActivity(intent);

@@ -17,7 +17,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:textColor="?attr/textcolor"
-        android:text="Opcje :" />
+        android:text="@string/menu_mozliwosci_opcje" />
 
     <Switch
         android:id="@+id/color_switch"
@@ -27,7 +27,7 @@
         android:layout_margin="16dp"
         android:textSize="18sp"
         android:textColor="?attr/textcolor"
-        android:text="Jasny" />
+        android:text="@string/switch_text" />
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -37,7 +37,7 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@id/confirm_button"
         ads:adSize="@string/adds_size_in_xml"
-        ads:adUnitId="@string/adds_in_xml">>
+        ads:adUnitId="@string/adds_in_xml">
     </com.google.android.gms.ads.AdView>
 
     <Button

@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Intent intent = new Intent(v.getContext(), SearchOnBuild.class);
                 startActivity(intent);
                 finish();
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         btnOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Intent intent = new Intent(v.getContext(), MenuOption.class);
                 startActivity(intent);
                 finish();
@@ -96,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 text=editText.getText().toString();
                 nextSearch(text);
                 closeKeyboard();
+                editText.setText("");
             }
         });
     }
