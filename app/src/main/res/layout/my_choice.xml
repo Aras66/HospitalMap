@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relLa"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
     android:background="?attr/backgroundcolor">
 
     <TextView
@@ -16,13 +16,22 @@
         android:textColor="?attr/textcolor"
         android:text="@string/myChoice_opis_budynku"
         android:textSize="19sp" />
+    <ImageView
+        android:id="@+id/imageView_MyChoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myUwagi"
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        android:contentDescription="@string/opis_obrazka_myChoice" />
+
 
     <TextView
         android:id="@+id/myUwagi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:padding="25dp"
+        android:layout_below="@id/myOpis"
+        android:paddingStart="25dp"
+        android:paddingEnd="2dp"
         android:textColor="?attr/textcolor"
         android:text="@string/myChoice_uwagi_do_opisu" />
 
@@ -30,7 +39,7 @@
         android:id="@+id/napBud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/opisBud"
+        android:layout_below="@id/imageView_MyChoice"
         android:textColor="?attr/textcolor"
         android:text="@string/myChoice_budynek" />
 
@@ -38,8 +47,9 @@
         android:id="@+id/myBudynek"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/myUwagi"
+        android:layout_below="@id/imageView_MyChoice"
         android:layout_alignParentStart="true"
+        android:layout_alignBaseline="@+id/napBud"
         android:layout_marginStart="82dp"
         android:padding="5dp"
         android:text="@string/myChoice_budynek_wartosc"
@@ -90,5 +100,6 @@
         ads:adSize="@string/adds_size_in_xml"
         ads:adUnitId="@string/adds_in_xml">
     </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>

@@ -32,10 +32,11 @@
     <string name="myChoice_pietro">Piętro</string>
     <string name="myChoice_opis_budynku_wartosc">Nieznany</string>
     <string name="button_menu_options">Zatwierdź</string>
-    <string name="adds_in_java">ca-app-pub-6058461398349914~1357613581</string>
-    <string name="adds_in_xml">ca-app-pub-6058461398349914/8370099719</string>
+    <string name="adds_in_java">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="adds_in_xml">ca-app-pub-3940256099942544/6300978111</string>
     <string name="adds_size_in_xml">FULL_BANNER</string>
     <string name="actv_text_hint">Wyszukaj oddział</string>
     <string name="menu_mozliwosci_opcje">Opcje :</string>
     <string name="switch_text">Jasny</string>
+    <string name="opis_obrazka_myChoice">Mapka szpital z zaznaczonym budynkiem docelowym.</string>
 </resources>

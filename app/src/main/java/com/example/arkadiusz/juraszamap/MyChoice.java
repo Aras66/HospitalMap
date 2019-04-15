@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -86,8 +87,8 @@ public class MyChoice extends AppCompatActivity {
     }
 
     private void setMyChoice(String budynek, String pietro, String opis, String uwagi, String opisBudynku, Integer id) {
-        RelativeLayout relativeLayout = findViewById(R.id.relLa);
-        relativeLayout.setBackgroundResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
+        ImageView imageView = findViewById(R.id.imageView_MyChoice);
+        imageView.setImageResource(getResources().getIdentifier(budynek.toLowerCase(), "drawable", getPackageName()));
         TextView budynek2 = findViewById(R.id.myBudynek);
         budynek2.setText(budynek);
         TextView pietro2 = findViewById(R.id.myPietro);
