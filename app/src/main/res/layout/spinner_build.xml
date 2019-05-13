@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/text_build"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/backgroundcolor"
+        android:padding="10dp"
+        android:textAllCaps="true"
+        android:textColor="?attr/textcolor"
+        android:text="A"
+        android:textSize="16sp"
+        android:textStyle="bold"></TextView>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/text_build_opis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/text_build"
+        android:background="?attr/backgroundcolor"
+        android:padding="10dp"
+        android:textAllCaps="true"
+        android:text="To jest taki tajny oddział"
+        android:textColor="?attr/textcolor"
+        android:textSize="16sp"
+        android:textStyle="bold"></TextView>
+
+</RelativeLayout>

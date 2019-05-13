@@ -2,6 +2,7 @@ package com.example.arkadiusz.juraszamap.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,15 +39,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
         this.miejsca = miejsca;
     }
 
+    @NonNull
     @Override
-    public SearchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.layout_item, parent, false);
         return new SearchViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(SearchViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull SearchViewHolder holder, final int position) {
         holder.budynek.setText(miejsca.get(position).getBudynek());
         holder.pietro.setText(String.valueOf(miejsca.get(position).getPietro()));
         holder.opis.setText(miejsca.get(position).getOpis());

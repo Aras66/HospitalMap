@@ -12,8 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
+import com.example.arkadiusz.juraszamap.Adapter.SpinnerAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import com.example.arkadiusz.juraszamap.Model.BuildSpinner;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -24,6 +29,7 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     SearchAdapter adapter;
+    SpinnerAdapter adapterSpinner;
     Database database;
     String budynek, pietro;
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -92,7 +98,8 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onItemSelected(AdapterView<?> av, View v,
                                        int pos, long id) {
-                budynek = av.getItemAtPosition(pos).toString();
+                BuildSpinner onlyHear = (BuildSpinner) av.getItemAtPosition(pos);
+                budynek = onlyHear.getBudynek();
                 loadSpinnerData2();
                 if(pietro!= null) {
                     Database db = new Database(getApplicationContext());
@@ -122,25 +129,12 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
     }
 
     private void loadSpinnerData() {
-        // database handler
-        Database db = new Database(getApplicationContext());
 
-        // Spinner Drop down elements
-        List<String> lables = db.getAllNamesBuilding();
-
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
-                R.layout.spinner_layout, lables);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter
-                .setDropDownViewResource(R.layout.spinner_layout);
-
-        // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
+        adapterSpinner = new SpinnerAdapter(this, (ArrayList<BuildSpinner>) database.getAllNamesBuilding());
+        spinner.setAdapter(adapterSpinner);
 
     }
+
     private void loadSpinnerData2() {
         // database handler
         Database db = new Database(getApplicationContext());

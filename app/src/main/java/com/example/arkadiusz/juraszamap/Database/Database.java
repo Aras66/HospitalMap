@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
+
+import com.example.arkadiusz.juraszamap.Model.BuildSpinner;
 import com.example.arkadiusz.juraszamap.Model.Miejsca;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -97,21 +99,25 @@ public class Database extends SQLiteAssetHelper {
         return result;
     }
 
-    public List<String> getAllNamesBuilding(){
-        String sqlSelect = "Budynek";
+    public List<BuildSpinner> getAllNamesBuilding(){
+        String sqlSelect = "Jurasza.Budynek";
+        String sqlSelectB ="Budynki.Opisbud";
         String tableName = "Jurasza";
-        List<String> result = new ArrayList<>();
 
         // Select All Query
-        String selectQuery = "SELECT  " +sqlSelect+ " FROM " +tableName+ " GROUP BY " +sqlSelect+ " ORDER BY " +sqlSelect+ "";
+        String selectQuery = "SELECT  " +sqlSelect+ ","+sqlSelectB+" FROM " +tableName+ " INNER JOIN Budynki ON Budynki.Budynek = Jurasza.Budynek GROUP BY " +sqlSelect+ " ORDER BY " +sqlSelect+ "";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
+        List<BuildSpinner> result = new ArrayList<>();
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                result.add(cursor.getString(0));
+                BuildSpinner buildSpinner = new BuildSpinner();
+                buildSpinner.setBudynek(String.valueOf(cursor.getString(cursor.getColumnIndex("Budynek"))));
+                buildSpinner.setOpisBudynku(String.valueOf(cursor.getString(cursor.getColumnIndex("Opisbud"))));
+                result.add(buildSpinner);
             } while (cursor.moveToNext());
         }
 
