@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -22,8 +23,11 @@ public class MenuOption extends AppCompatActivity {
     public static final String COLOR_SWITCH = "colorSwitch";
 
     private boolean switchOnOff;
-
+    String  backIntent,setIntent;
     protected void onCreate(Bundle savedInstanceState) {
+        backIntent = getIntent().getStringExtra("backIntent");
+        // save name of intent
+        setIntent = MenuOption.class.getCanonicalName();
         // sprawdza jaki jest zapisany layout
         loadData();
         // ustawia żądany layout
@@ -108,5 +112,25 @@ colorSwitch.setChecked(switchOnOff);
         Intent intent = new Intent(getApplicationContext(), MenuOption.class);
         startActivity(intent);
         finish();
+    }
+    public void onBackPressed() {
+        if(backIntent == null){
+            Intent intent = new Intent(getBaseContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            try {
+                Class newClass = Class.forName(backIntent);
+                Intent resume = new Intent(this, newClass);
+                resume.putExtra("backIntent", setIntent);
+                startActivity(resume);
+                finish();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 }

@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
 import com.example.arkadiusz.juraszamap.Adapter.SpinnerAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
@@ -31,13 +33,17 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
     SearchAdapter adapter;
     SpinnerAdapter adapterSpinner;
     Database database;
-    String budynek, pietro;
+    String budynek, pietro, backIntent,setIntent;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String COLOR_SWITCH = "colorSwitch";
     private boolean switchOnOff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        backIntent = getIntent().getStringExtra("backIntent");
+        // save name of intent
+        setIntent = SearchOnBuild.class.getCanonicalName();
+
         colorVersion();
         if(switchOnOff){
             setTheme(R.style.DarkTheme);
@@ -77,8 +83,13 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
         btnOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(v.getContext(), MenuOption.class);
+                // send name of this intent
+                intent.putExtra("backIntent", setIntent);
+                //start next intent
                 startActivity(intent);
+                // close this intent
                 finish();
             }
         });
@@ -87,6 +98,7 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
+                intent.putExtra("backIntent", "SearchOnBuild");
                 startActivity(intent);
                 finish();
             }
@@ -175,6 +187,26 @@ public class SearchOnBuild extends AppCompatActivity implements AdapterView.OnIt
     private void colorVersion() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         switchOnOff = sharedPreferences.getBoolean(COLOR_SWITCH, false);
+    }
+    public void onBackPressed() {
+        if(backIntent == null){
+            Intent intent = new Intent(getBaseContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            try {
+                Class newClass = Class.forName(backIntent);
+                Intent resume = new Intent(this, newClass);
+                resume.putExtra("backIntent", setIntent);
+                startActivity(resume);
+                finish();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
 }

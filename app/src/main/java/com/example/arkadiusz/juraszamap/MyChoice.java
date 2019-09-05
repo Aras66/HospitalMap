@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -23,12 +24,17 @@ public class MyChoice extends AppCompatActivity {
     private String uwagi="k";
     private String opisBudynku="m";
     private int id;
+    String  backIntent,setIntent;
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String COLOR_SWITCH = "colorSwitch";
     private boolean switchOnOff;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        backIntent = getIntent().getStringExtra("backIntent");
+        Toast.makeText(this, "Dostałem"+backIntent, Toast.LENGTH_SHORT).show();
+        // save name of intent
+        setIntent = MyChoice.class.getCanonicalName();
         colorVersion();
         if(switchOnOff){
             setTheme(R.style.DarkTheme);
@@ -104,5 +110,25 @@ public class MyChoice extends AppCompatActivity {
     private void colorVersion() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         switchOnOff = sharedPreferences.getBoolean(COLOR_SWITCH, false);
+    }
+    public void onBackPressed() {
+        if(backIntent == null){
+            Intent intent = new Intent(getBaseContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            try {
+                Class newClass = Class.forName(backIntent);
+                Intent resume = new Intent(this, newClass);
+                resume.putExtra("backIntent", setIntent);
+                startActivity(resume);
+                finish();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 }

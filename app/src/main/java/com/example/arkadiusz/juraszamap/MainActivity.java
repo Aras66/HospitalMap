@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.arkadiusz.juraszamap.Adapter.SearchAdapter;
 import com.example.arkadiusz.juraszamap.Database.Database;
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String COLOR_SWITCH = "colorSwitch";
     private boolean switchOnOff;
-
+    int countBack =0;
+    String setIntent;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     SearchAdapter adapter;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // save name of intent
+        setIntent = MainActivity.class.getCanonicalName();
         // check the layout option and set chosen layout
         colorVersion();
         if (switchOnOff) {
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SearchOnBuild.class);
+                intent.putExtra("backIntent", setIntent);
                 startActivity(intent);
                 finish();
             }
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MenuOption.class);
+                intent.putExtra("backIntent", setIntent);
                 startActivity(intent);
                 finish();
             }
@@ -129,5 +135,14 @@ public class MainActivity extends AppCompatActivity {
     private void startSearch() {
         adapter = new SearchAdapter(this, database.getMiejsca());
         recyclerView.setAdapter(adapter);
+    }
+    public void onBackPressed() {
+        if(countBack != 2 ){
+            countBack=countBack+1;
+            Toast.makeText(this, "Naciśnij jeszcze raz aby zamknąc.", Toast.LENGTH_SHORT).show();
+        }
+        if(countBack == 2){
+           System.exit(0);
+        }
     }
 }
