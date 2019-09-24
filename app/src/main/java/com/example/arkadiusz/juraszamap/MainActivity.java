@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     List<String> suggestList = new ArrayList<>();
     Database database;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // save name of intent
